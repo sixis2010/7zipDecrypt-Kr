@@ -18,9 +18,7 @@ namespace Dreamware
 
          List<Process> runningProcess = new List<Process>();
          List<Process> pendingProcess = new List<Process>();
-
-         List<Process> backupProcess = new List<Process>();
-
+         
          Timer tmr = null;
 
          string path = null;
@@ -99,8 +97,7 @@ namespace Dreamware
 
              if (!pendingProcess.Any(m => m == p))
              {
-                 pendingProcess.Add(p);
-                 backupProcess.Add(p);
+                 pendingProcess.Add(p); 
              }
          }
 
