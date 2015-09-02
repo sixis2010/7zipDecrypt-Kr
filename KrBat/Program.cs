@@ -125,7 +125,7 @@ namespace Dreamware
              tempList.AddRange(runningProcess);
              return tempList;
          }
-
+         
          private Process NewTask(string arguments)
          {
              Process process = new Process();
