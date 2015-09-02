@@ -123,7 +123,10 @@ namespace Dreamware
 
          public List<Process> GetAllProcess()
          {
-             return backupProcess;
+             var tempList = new List<Process>();
+             tempList.AddRange(pendingProcess);
+             tempList.AddRange(runningProcess);
+             return tempList;
          }
 
          private Process NewTask(string arguments)
