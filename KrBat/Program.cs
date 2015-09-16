@@ -12,12 +12,12 @@ namespace Dreamware
 {   
     public class KrBat
     {
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool TerminateProcess(IntPtr hProcess, uint uExitCode);
+         [DllImport("kernel32.dll", SetLastError = true)]
+         [return: MarshalAs(UnmanagedType.Bool)]
+         static extern bool TerminateProcess(IntPtr hProcess, uint uExitCode);
 
-         List<Process> runningProcess = new List<Process>();
-         List<Process> pendingProcess = new List<Process>();
+         private List<Process> runningProcess = new List<Process>();
+         private List<Process> pendingProcess = new List<Process>();
          
          Timer tmr = null;
 
@@ -44,10 +44,12 @@ namespace Dreamware
              {
                  tmr.Dispose();
                  tmr = null;
-             } 
+             }
 
              foreach (var p in GetAllProcess())
-                 Remove(p); 
+             {
+                 Remove(p);
+             }
 
             try
             {
@@ -57,7 +59,9 @@ namespace Dreamware
                 }
             }
             catch (Exception ex)
-            { }
+            {
+
+            }
          }
 
          bool ExitProcess(Process p)
@@ -114,7 +118,8 @@ namespace Dreamware
              }
              catch(Exception ex)
              {
-
+                 if(ex.Message!=null)
+                    Console.WriteLine(ex.Message);
              } 
          }
 
@@ -336,7 +341,7 @@ namespace Dreamware
 
             for (; ; )
             {
-                Console.Write("ext(0),std(1) or dic(2):");
+                Console.Write("[ext(0) std(1) dict(2)]:");
                 string read = Console.ReadLine();
                  
                 if (read == "1")
